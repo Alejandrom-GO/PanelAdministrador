@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConexionService } from '../../services/conexion.service';
-
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-views',
