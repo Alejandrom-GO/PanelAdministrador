@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "reservaciones-donmundo": {
+      "hosting": {
+        "PanelAdmin": [
+          "reservaciones-donmundo"
+        ]
+      }
+    }
+  }
+}

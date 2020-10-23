@@ -1,0 +1,189 @@
+<div id="logo">
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/logoByN.png" width="90" height="90" class="d-inline-block align-top" alt="" />
+        </a>
+    </nav>
+</div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 id="titulo" class="font-weight-bold">Reservaciones</h1>
+            <table class="table table-responsive table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Mesa Para</th>
+                        <th scope="col">Detalles</th>
+                        <th scope="col">Num. Celular</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items">
+                        <td>{{ item.fecha | date: "mediumDate" }}</td>
+                        <td>{{ item.firstname }}</td>
+                        <td>{{ item.surname }}</td>
+                        <td>{{ item.hora }}</td>
+                        <td>{{ item.personas }}</td>
+                        <td>{{ item.detalles }}</td>
+                        <td>{{ item.number }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.estado }}</td>
+                        <td>
+                            <button type=" button " class="btn btn-secondary" id="BtnDlt" data-toggle="modal" data-target="#update" (click)="editar(item)">
+                Modificar
+              </button>
+                            <button class="btn btn-danger" type="button" id="BtnUpt" data-toggle="modal" data-target="#delete">
+                Eliminar
+              </button>
+                        </td>
+                        <!-- Modal Delete -->
+                        <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="delete">
+                                            Confirmacion de Eliminacion
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Al eliminar la reservacion, desaparecera y no se podra recuperar
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Cerrar
+                    </button>
+                                        <button type="button " class="btn btn-primary" data-dismiss="modal" (click)="eliminar(item.id)">
+                      Eliminar
+                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Update -->
+                        <div class="modal" id="update" tabindex="-1" aria-labelledby="update" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="update">
+                                            Modificacion de reservacion
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <form (ngSubmit)="editarform()" id="editarform">
+                                                <div class="controls">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="form_lastname">Nombre (s) *</label>
+                                                                <input class="form-control" type="text" name="firstname" [(ngModel)]="itemEditar.firstname" placeholder="Ingresa tu nombre">
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="form_lastname">Apellidos *</label>
+                                                                <input type="text" name="surname" class="form-control" [(ngModel)]="itemEditar.surname" placeholder="Ingresa tus Apellidos" required>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group"> <label for="form_email">Email </label> <input type="email" name="email" class="form-control" [(ngModel)]="itemEditar.email" placeholder="Ingresa tu email" required>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group"> <label for="form_number">Número de telefono *</label>
+                                                                <input id="form_number" type="number" name="number" class="form-control" [(ngModel)]="itemEditar.number" placeholder="Ingresa tu número de telefono * " minlength="10 " maxlength="10 " required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-md-6 ">
+                                                            <div class="form-group "><label for="form_time ">Fecha *</label> <input type="date" name="fecha" class="form-control" [(ngModel)]="itemEditar.fecha" placeholder="Ingresa la fecha * " required></div>
+
+                                                        </div>
+                                                        <div class="col-md-6 ">
+                                                            <div class="form-group ">
+                                                                <label for="form_hour ">Hora *</label>
+                                                                <select name="hour " class="form-control" [(ngModel)]="itemEditar.hora" required>
+                                                                    <option value="{{itemEditar.hora}}" selected>{{itemEditar.hora}}</option>
+                                                                    <option value="9:00 ">9:00</option>
+                                                                    <option value="10:00 ">10:00</option>
+                                                                    <option value="11:00 ">11:00</option>
+                                                                    <option value="12:00 ">12:00</option>
+                                                                    <option value="13:00 ">13:00</option>
+                                                                    <option value="14:00 ">14:00</option>
+                                                                    <option value="15:00 ">15:00</option>
+                                                                    <option value="17:00 ">17:00</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-md-12 ">
+                                                            <div class="form-group "> <label for="form_person ">¿ Mesa Para ?*</label> <input type="number " name="person " class="form-control" [(ngModel)]="itemEditar.personas" placeholder="Seleccione el número de personas para la
+                                                                    reservación " min="1 " max="10 " required> </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 ">
+                                                            <div class="form-group ">
+                                                                <label for="form_estado ">Estado *</label>
+                                                                <select name="estado" class="form-control" [(ngModel)]="itemEditar.estado" required>
+                                                                    <option value="{{itemEditar.estado}}" selected>{{itemEditar.estado}}</option>
+                                                                    <option value="Pendient">Pendiente</option>
+                                                                    <option value="Cofirmado">Cofirmado</option>
+                                                                    <option value="Cancelado">Cancelado</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row ">
+                                                        <div class="col-md-12 ">
+                                                            <div class="form-group "> <label for="form_message ">Detalles de Reservación
+                                          </label> <textarea name="message " class="form-control" [(ngModel)]="itemEditar.detalles" placeholder="¿Alguna atención especial? Escríbalo " rows="4 "></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer ">
+                                                    <button type="button " class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button id="btnUpdt" type="submit" class="btn btn-primary" (click)="cerrar()">Modificar</button>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

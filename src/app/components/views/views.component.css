@@ -1,0 +1,28 @@
+table {
+    background-color: white;
+    text-align: center;
+    border-left: 50px;
+    border-radius: 10px;
+}
+
+#BtnDlt {
+    margin-bottom: 10px;
+    margin-left: -1px;
+    cursor: pointer;
+}
+
+#BtnUpt {
+    margin-bottom: 10px;
+}
+
+#logo {
+    margin-bottom: -40px;
+}
+
+#titulo {
+    text-align: center;
+}
+
+#update {
+    margin-top: 2%;
+}
