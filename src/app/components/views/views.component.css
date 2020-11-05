@@ -5,6 +5,14 @@ table {
     border-radius: 10px;
 }
 
+td {
+    line-height: 20px;
+    text-align: center;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+}
+
 #BtnDlt {
     margin-bottom: 10px;
     margin-left: -1px;

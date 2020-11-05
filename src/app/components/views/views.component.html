@@ -6,20 +6,21 @@
     </nav>
 </div>
 <br />
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <h1 id="titulo" class="font-weight-bold">Reservaciones</h1>
             <table class="table table-responsive table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Fecha Reservacion</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Hora</th>
-                        <th scope="col">Mesa Para</th>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Personas</th>
                         <th scope="col">Detalles</th>
-                        <th scope="col">Num. Celular</th>
+                        <th scope="col">Celular</th>
                         <th scope="col">Email</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Accion</th>
@@ -27,10 +28,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
-                        <td>{{ item.fecha | date: "mediumDate" }}</td>
+                        <td>{{ item.fecha | date: "dd-MM-yyyy" }}</td>
                         <td>{{ item.firstname }}</td>
                         <td>{{ item.surname }}</td>
                         <td>{{ item.hora }}</td>
+                        <td>{{ item.mesa }}</td>
                         <td>{{ item.personas }}</td>
                         <td>{{ item.detalles }}</td>
                         <td>{{ item.number }}</td>
@@ -135,6 +137,16 @@
                                                                     <option value="17:00 ">17:00</option>
                                                                 </select>
                                                             </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group"> <label for="form_mesa">Mesa*</label>
+                                                                <select name="mesa" class="form-control" [(ngModel)]="itemEditar.mesa">
+                                                                <option value="{{itemEditar.mesa}}" selected>{{itemEditar.mesa}}</option>
+                                                                <option *ngFor="let mesas of mesasDisponible; let indice=index">{{mesas.numeroMesa}}</option>
+                                                             </select> </div>
 
                                                         </div>
                                                     </div>
