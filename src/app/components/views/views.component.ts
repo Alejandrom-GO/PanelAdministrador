@@ -59,7 +59,7 @@ itemEditar: any = {firstname: '' };
       title: 'Modificacion Exitosa',
       confirmButtonText: 'OK'
     }).then(() => {
-      window.location.href = '/';
+      window.location.href = 'https://alejandrom-go.github.io/PanelAdministrador/#/';
     });
   }
   // tslint:disable-next-line:typedef
